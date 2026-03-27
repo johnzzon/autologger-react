@@ -109,6 +109,14 @@ export default function DailyView() {
     setSearchParams({ date: newDate });
   }
 
+  function logAllJira() {
+    if (!data) return;
+    const jiraEvents = data.events.filter((e) => e.isJiraIssue);
+    for (const event of jiraEvents) {
+      logTime(event);
+    }
+  }
+
   async function logTime(event: CalendarEvent) {
     const key = `${event.uuid}-jira`;
     setLogStatus((s) => ({ ...s, [key]: "loading" }));
@@ -207,6 +215,15 @@ export default function DailyView() {
               ))}
             </tbody>
           </table>
+
+          {data.events.some((e) => e.isJiraIssue) && (
+            <button
+              onClick={logAllJira}
+              className="mt-3 text-sm cursor-pointer text-gray-500 hover:text-gray-900"
+            >
+              Log all to Jira
+            </button>
+          )}
 
           {data.events.length === 0 && (
             <p className="text-gray-400 mt-4">No events for this date.</p>

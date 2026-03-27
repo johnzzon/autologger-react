@@ -63,12 +63,7 @@ export async function createJiraWorklog(
   const url = `${host}/rest/api/2/issue/${issueKey}/worklog`;
 
   const body: Record<string, string> = {
-    started: new Date()
-      .toISOString()
-      .replace(/[-:]/g, "")
-      .replace(/\.\d{3}/, "")
-      .replace("T", "T")
-      .slice(0, 15) + ".000+0000",
+    started: new Date().toISOString().replace("Z", "+0000"),
     timeSpent: duration,
   };
   if (message) {
