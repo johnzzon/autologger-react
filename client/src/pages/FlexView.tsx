@@ -21,22 +21,41 @@ export default function FlexView() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p className="text-gray-500">Loading weekly hours...</p>;
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (loading) {
+    return (
+      <div className="space-y-3 py-4">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="h-10 rounded-xl bg-stone-100 animate-pulse" />
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+        {error}
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Flex / Weekly Hours</h1>
-      <table className="w-full">
-        <tbody>
-          {weeks.map((w) => (
-            <tr key={w.week} className="border-t border-gray-100">
-              <td className="py-1 font-mono">{w.week}</td>
-              <td className="py-1 text-right pl-12 tabular-nums">{w.hours}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1 className="text-lg font-semibold text-stone-800 mb-4">Weekly Hours</h1>
+      <div className="space-y-1">
+        {weeks.map((w) => {
+          const hours = parseFloat(w.hours);
+          const isOver = hours >= 40;
+          return (
+            <div key={w.week} className="flex items-center justify-between rounded-xl px-3 py-2 hover:bg-stone-50 transition-colors">
+              <span className="font-mono text-sm text-stone-600">{w.week}</span>
+              <span className={`tabular-nums text-sm font-medium ${isOver ? "text-emerald-600" : "text-stone-500"}`}>
+                {w.hours}h
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

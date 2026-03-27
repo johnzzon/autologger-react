@@ -2,8 +2,10 @@ import type { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-6 max-w-3xl rounded-2xl bg-white p-8 text-lg text-gray-800 shadow-xl">
-      {children}
+    <div className="mx-auto max-w-3xl px-6 pb-12">
+      <div className="rounded-2xl bg-white p-6 sm:p-8 text-lg text-stone-700 shadow-sm ring-1 ring-stone-200/60">
+        {children}
+      </div>
     </div>
   );
 }

@@ -1,17 +1,35 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Layout from "./components/Layout";
 import DailyView from "./pages/DailyView";
 import FlexView from "./pages/FlexView";
 import LogResult from "./pages/LogResult";
 import HarvestForm from "./pages/HarvestForm";
 
+function NavItem({ to, children }: { to: string; children: React.ReactNode }) {
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+          isActive
+            ? "bg-stone-800 text-white"
+            : "text-stone-500 hover:text-stone-800 hover:bg-stone-100"
+        }`
+      }
+    >
+      {children}
+    </NavLink>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
-      <nav className="m-6 flex gap-4 text-sm font-medium text-gray-500">
-        <Link to="/" className="hover:text-gray-900">Daily</Link>
-        <Link to="/flex" className="hover:text-gray-900">Flex</Link>
-        <Link to="/log-form" className="hover:text-gray-900">Harvest</Link>
+      <nav className="mx-auto max-w-3xl px-6 pt-6 pb-4 flex items-center gap-1">
+        <span className="mr-3 text-base font-semibold tracking-tight text-stone-800">Autolog</span>
+        <NavItem to="/">Daily</NavItem>
+        <NavItem to="/flex">Flex</NavItem>
+        <NavItem to="/log-form">Harvest</NavItem>
       </nav>
       <Layout>
         <Routes>
