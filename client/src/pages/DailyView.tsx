@@ -351,7 +351,7 @@ function LogButton({
       className={`${base} text-stone-400 hover:text-blue-600 hover:bg-blue-50 cursor-pointer`}
       title={`Log to ${label === "J" ? "Jira" : "Fibery"}`}
     >
-      ⏱
+      <span className="text-lg">⏱</span>
     </button>
   );
 }
