@@ -120,6 +120,7 @@ export default function DailyView() {
       if (e.key === "ArrowLeft" || e.key === "k") navigate(yesterdayDate);
       if (e.key === "ArrowRight" || e.key === "j") navigate(tomorrowDate);
       if (e.key === "t") navigate(new Date().toISOString().split("T")[0]);
+      if (e.key === "r") setBustCache(true);
     }
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);

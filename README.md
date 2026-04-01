@@ -27,10 +27,10 @@ Built with React 19, Vite 6, Tailwind CSS 4, Express 5, and TypeScript.
 git clone <repo-url> && cd autologger-react
 cp .env.example .env
 # Fill in .env with your credentials (see below)
-npm install
+`npm install
 npm install --prefix client
 npm install --prefix server
-npm run dev
+npm run dev`
 ```
 
 The client runs on `http://localhost:5173` with API requests proxied to the server on port 3001.
