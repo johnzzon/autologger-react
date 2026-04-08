@@ -100,6 +100,8 @@ export default function DailyView() {
   // Re-trigger Harvest platform script after events render and after Jira titles load
   useEffect(() => {
     if (!data?.events.length) return;
+    // Remove Harvest's internal messaging iframe so it fully re-initializes
+    document.getElementById("harvest-messaging")?.remove();
     // Remove styled class so Harvest re-processes elements with updated data-item
     document.querySelectorAll(".harvest-timer.styled").forEach((el) => {
       el.classList.remove("styled");
@@ -110,7 +112,7 @@ export default function DailyView() {
     if (old) old.remove();
     const script = document.createElement("script");
     script.id = id;
-    script.src = "https://platform.harvestapp.com/assets/platform.js";
+    script.src = `https://platform.harvestapp.com/assets/platform.js?_=${Date.now()}`;
     script.async = true;
     document.head.appendChild(script);
   }, [data, jiraTitles]);
