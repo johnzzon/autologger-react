@@ -25,7 +25,7 @@ Monorepo with a React SPA client and Express API server. The app reads a Google 
 
 **Client** (port 5173): React 19 + Vite 6 + Tailwind CSS 4. Vite proxies `/api/*` to the server in dev.
 
-**Server** (port 3001): Express 5 + TypeScript. Loads `.env` from the repo root (`../`). All routes mounted under `/api`.
+**Server** (port 3002): Express 5 + TypeScript. Loads `.env` from the repo root (`../`). All routes mounted under `/api`.
 
 ### Data flow
 

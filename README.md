@@ -33,7 +33,7 @@ npm install --prefix server
 npm run dev`
 ```
 
-The client runs on `http://localhost:5173` with API requests proxied to the server on port 3001.
+The client runs on `http://localhost:5173` with API requests proxied to the server on port 3002.
 
 ## Environment Variables
 
